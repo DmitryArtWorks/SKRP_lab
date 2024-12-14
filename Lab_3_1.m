@@ -76,98 +76,98 @@ C(~C) = [];
 
 for i = 1:1
 
-z_1        = zeros(4,K);
-x_1        = zeros(4,K);
-V_1        = zeros(4,K);
-psi_1      = zeros(4,K);
-psi_1_deg  = zeros(4,K);
-j_1prd     = zeros(4,K);
-j_1ppr     = zeros(4,K);
+z_1        = zeros(1,K);
+x_1        = zeros(1,K);
+V_1        = zeros(1,K);
+psi_1      = zeros(1,K);
+psi_1_deg  = zeros(1,K);
+j_1prd     = zeros(1,K);
+j_1ppr     = zeros(1,K);
 
-V_1z       = zeros(4,K);
-V_1x       = zeros(4,K);
-a_1        = zeros(4,K);
-psi_a1     = zeros(4,K);
-psi_a1_deg = zeros(4,K);
-a_1z       = zeros(4,K);
-a_1x       = zeros(4,K);
+V_1z       = zeros(1,K);
+V_1x       = zeros(1,K);
+a_1        = zeros(1,K);
+psi_a1     = zeros(1,K);
+psi_a1_deg = zeros(1,K);
+a_1z       = zeros(1,K);
+a_1x       = zeros(1,K);
  
 
-z_2        = zeros(4,K);
-x_2        = zeros(4,K);
-V_2        = zeros(4,K);
-psi_2      = zeros(4,K);
-psi_2_deg  = zeros(4,K);
-j_2prd     = zeros(4,K);
-j_2ppr     = zeros(4,K);
+z_2        = zeros(1,K);
+x_2        = zeros(1,K);
+V_2        = zeros(1,K);
+psi_2      = zeros(1,K);
+psi_2_deg  = zeros(1,K);
+j_2prd     = zeros(1,K);
+j_2ppr     = zeros(1,K);
 
-V_2z       = zeros(4,K);
-V_2x       = zeros(4,K);
-a_2        = zeros(4,K);
-psi_a2     = zeros(4,K);
-psi_a2_deg = zeros(4,K);
-a_2z       = zeros(4,K);
-a_2x       = zeros(4,K);
+V_2z       = zeros(1,K);
+V_2x       = zeros(1,K);
+a_2        = zeros(1,K);
+psi_a2     = zeros(1,K);
+psi_a2_deg = zeros(1,K);
+a_2z       = zeros(1,K);
+a_2x       = zeros(1,K);
 
 
-alpha      = zeros(4,K);
-alpha_deg  = zeros(4,K);
-phi_1      = zeros(4,K);
-phi_1_deg  = zeros(4,K);
-phi_2      = zeros(4,K);
-phi_2_deg  = zeros(4,K);
-D          = zeros(4,K);
-w          = zeros(4,K);
-w_deg      = zeros(4,K);
-V_r        = zeros(4,K);
-V_t        = zeros(4,K);
-V_o        = zeros(4,K);
-h          = zeros(4,K);
+alpha      = zeros(1,K);
+alpha_deg  = zeros(1,K);
+phi_1      = zeros(1,K);
+phi_1_deg  = zeros(1,K);
+phi_2      = zeros(1,K);
+phi_2_deg  = zeros(1,K);
+D          = zeros(1,K);
+w          = zeros(1,K);
+w_deg      = zeros(1,K);
+V_r        = zeros(1,K);
+V_t        = zeros(1,K);
+V_o        = zeros(1,K);
+h          = zeros(1,K);
 
-phi_1_treb = zeros(4,K);
-w_treb     = zeros(4,K);
+phi_1_treb = zeros(1,K);
+w_treb     = zeros(1,K);
 
-flag_stop  =  zeros(4,1);
-K_stop     = K*ones(4,1);
+flag_stop  =  0;
+K_stop     = K;
 
-flag_plot  =  zeros(4,1);
+flag_plot  =  0;
 
-D_0        =  zeros(4,1);
+D_0        =  0;
 
-flag_break =  zeros(4,1);   %++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+flag_break =  0;   %++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-S_h        =  zeros(4,1);   %++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+S_h        =  0;   %++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 %--------------------------------------------------------------------------
-V_r_a      =  zeros(4,1);
-delta_V_r  =  zeros(4,1);
+V_r_a      =  0;
+delta_V_r  =  0;
 
-D_a        =  zeros(4,1);
-delta_D    =  zeros(4,1);
+D_a        =  0;
+delta_D    =  0;
 
-V_t_a      =  zeros(4,1);
-delta_V_t  =  zeros(4,1);
+V_t_a      =  0;
+delta_V_t  =  0;
 
-w_a      =  zeros(4,1);
-delta_w  =  zeros(4,1);
+w_a      =  0;
+delta_w  =  0;
 
-w_a_deg     = zeros(4,1);
-delta_w_deg = zeros(4,1);
+w_a_deg     = 0;
+delta_w_deg = 0;
 
 end
 
 
-z_1(:,1) = [  z_1_0     z_1_0    100*10^3    150*10^3 ];    % координата z [м]
-x_1(:,1) = [  x_1_0     x_1_0    110*10^3     60*10^3 ];    % координата x [м]
+z_1(1,1) = z_1_0;    % координата z [м]
+x_1(1,1) = x_1_0;    % координата x [м]
 
-V_1(:,1) =       [ V_1_0    V_1_0    400    400 ];    % скорость [м/с]
+V_1(1,1) = V_1_0;    % скорость [м/с]
 
-psi_1_deg(:,1) = [  psi_1_deg_0      psi_1_deg_0      0      0 ];    % курс [град]
-psi_1(:,1) = psi_1_deg(:,1) *pi/180;              % курс [рад]
+psi_1_deg(1,1) = psi_1_deg_0;    % курс [град]
+psi_1(1,1) = psi_1_deg(1,1) *pi/180;              % курс [рад]
 
-j_1prd(:,1) =    [   0      0      0      0 ];    % продольное ускорение [м/с^2]
-j_1ppr(:,1) =    [   0      0      0      0 ];    % поперечное ускорение [м/с^2]
+j_1prd(1,1) = 0;    % продольное ускорение [м/с^2]
+j_1ppr(1,1) = 0;    % поперечное ускорение [м/с^2]
 
 for j = C
 
