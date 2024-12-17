@@ -82,6 +82,7 @@ C(~C) = [];
 z1 = zeros(NumDirs,K); x1 = zeros(NumDirs,K);
 z2 = zeros(NumDirs,K); x2 = zeros(NumDirs,K);
 K_stop_multilaunch = zeros(NumDirs);
+flag_miss = zeros(NumDirs);
 
 for angleViz = 1:NumDirs
     psi_1_deg_0 = psi_1_deg_init + 60 * (angleViz - 1);
@@ -689,7 +690,9 @@ for angleViz = 1:NumDirs
     z2(angleViz,:) = z_2(1,:);
     x2(angleViz,:) = x_2(1,:);
     K_stop_multilaunch(angleViz) = K_stop(j);
+    flag_miss(angleViz) = flag_break(j);
 end
+assignin("base", "flag_miss", flag_miss)
 f_Colours
 
 % положение и размер окна
@@ -708,13 +711,20 @@ switch sw_graph
     case 1
         cla reset
         hold on
+        grid on
+        box on
+        axis fill
+
+        set(gca, 'FontSize', 12);
+        xlabel('Z, м'); ylabel('X, м');
+
         for i = 1:NumDirs
             z_1 = z1(i,:); x_1 = x1(i,:);
             z_2 = z2(i,:); x_2 = x2(i,:);
             K_stop = K_stop_multilaunch(i);
+            flag_break = flag_miss(i);
             graph_001_traektorii_fg
         end
-        % hold off
 
     case 2
         graph_002_D
