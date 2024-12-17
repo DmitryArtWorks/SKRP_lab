@@ -71,15 +71,13 @@ tk = handles.dat_tk;%500;
 t = t0:T:tk;
 K = numel(t);
 
-C = [ sw_obup_1 sw_obup_2 sw_obup_3 sw_obup_4 ].*[ 1 2 3 4 ];
-C(~C) = [];
 
 
 
 z1 = zeros(NumDirs,K); x1 = zeros(NumDirs,K);
 z2 = zeros(NumDirs,K); x2 = zeros(NumDirs,K);
 K_stop_multilaunch = zeros(NumDirs);
-flag_miss = zeros(NumDirs);
+flag_miss = zeros(1, NumDirs);
 
 for angleViz = 1:NumDirs
     psi_1_deg_0 = psi_1_deg_init + 60 * (angleViz - 1);
@@ -91,15 +89,6 @@ psi_1      = zeros(1,K);
 psi_1_deg  = zeros(1,K);
 j_1prd     = zeros(1,K);
 j_1ppr     = zeros(1,K);
-
-V_1z       = zeros(1,K);
-V_1x       = zeros(1,K);
-a_1        = zeros(1,K);
-psi_a1     = zeros(1,K);
-psi_a1_deg = zeros(1,K);
-a_1z       = zeros(1,K);
-a_1x       = zeros(1,K);
- 
 
 z_2        = zeros(1,K);
 x_2        = zeros(1,K);
@@ -135,129 +124,129 @@ h          = zeros(1,K);
 phi_1_treb = zeros(1,K);
 w_treb     = zeros(1,K);
 
-flag_stop  =  zeros(1,1);
-K_stop     = K*ones(1,1);
+flag_stop  =  0;
+K_stop     =  K;
 
-flag_plot  =  zeros(1,1);
+flag_plot  =  0;
 
-D_0        =  zeros(1,1);
+D_0        =  0;
 
-flag_break =  zeros(1,1);   
+flag_break =  0;   
 
-S_h        =  zeros(1,1);   
+S_h        =  zeros(1,K);   
 
 %--------------------------------------------------------------------------
-V_r_a      =  zeros(1,1);
-delta_V_r  =  zeros(1,1);
+V_r_a      =  zeros(1,K);
+delta_V_r  =  zeros(1,K);
 
-D_a        =  zeros(1,1);
-delta_D    =  zeros(1,1);
+D_a        =  zeros(1,K);
+delta_D    =  zeros(1,K);
 
-V_t_a      =  zeros(1,1);
-delta_V_t  =  zeros(1,1);
+V_t_a      =  zeros(1,K);
+delta_V_t  =  zeros(1,K);
 
-w_a      =  zeros(1,1);
-delta_w  =  zeros(1,1);
+w_a      =  zeros(1,K);
+delta_w  =  zeros(1,K);
 
-w_a_deg     = zeros(1,1);
-delta_w_deg = zeros(1,1);
-
-
-z_1(:,1) = z_1_0;    % координата z [м]
-x_1(:,1) = x_1_0;    % координата x [м]
-
-V_1(:,1) =  V_1_0;    % скорость [м/с]
-
-psi_1_deg(:,1) = psi_1_deg_0;    % курс [град]
-psi_1(:,1) = psi_1_deg(:,1) *pi/180;              % курс [рад]
-
-j_1prd(:,1) =    0;    % продольное ускорение [м/с^2]
-j_1ppr(:,1) =    0;    % поперечное ускорение [м/с^2]
+w_a_deg     = zeros(1,K);
+delta_w_deg = zeros(1,K);
 
 
-V_1z(1,1) = V_1.*sin(psi_1);                          % проекция скорости на ось z [м/с]
-V_1x(1,1) = V_1.*cos(psi_1);                          % проекция скорости на ось x [м/с]
+z_1(1) = z_1_0;    % координата z [м]
+x_1(1) = x_1_0;    % координата x [м]
 
-a_1(1,1) = sqrt(j_1prd.^2 + j_1ppr.^2);                % ускорение [м/с^2]
+V_1(1) =  V_1_0;    % скорость [м/с]
 
-psi_a1(1,1) = psi_1 + atan2(j_1ppr,j_1prd); % направление ускорения [рад]
-psi_a1(1,1) = ANGLE_CORRECT( psi_a1 );
-psi_a1_deg(1,1) = psi_a1 *180/pi;                         % направление ускорения [град]
+psi_1_deg(1) = psi_1_deg_0;    % курс [град]
+psi_1(1) = psi_1_deg(:,1) *pi/180;              % курс [рад]
 
-a_1z(1,1) = a_1(1,1).*sin(psi_a1);                         % проекция ускорения на ось z [м/с^2]
-a_1x(1,1) = a_1(1,1).*cos(psi_a1);                         % проекция ускорения на ось x [м/с^2]
-
-
-z_2(:,1) = z_2_0;
-x_2(:,1) = x_2_0;
-
-V_2(:,1) = V_2_0;    % скорость [м/с]
-
-psi_2_deg(:,1) = psi_2_deg_0 ;    % курс [град]
-psi_2(:,1) = psi_2_deg(:,1) *pi/180;              % курс [рад]
-
-j_2prd(:,1) =    0;    % продольное ускорение [м/с^2]
-j_2ppr(:,1) =    0;    % поперечное ускорение [м/с^2]
+j_1prd(1) =    0;    % продольное ускорение [м/с^2]
+j_1ppr(1) =    0;    % поперечное ускорение [м/с^2]
 
 
-V_2z(1,1) = V_2(1,1)*sin(psi_2(1,1));                          % проекция скорости на ось z [м/с]
-V_2x(1,1) = V_2(1,1)*cos(psi_2(1,1));                          % проекция скорости на ось x [м/с]
+V_1z = V_1.*sin(psi_1);                          % проекция скорости на ось z [м/с]
+V_1x = V_1.*cos(psi_1);                          % проекция скорости на ось x [м/с]
 
-a_2(1,1) = sqrt(j_2prd(1,1)^2 + j_2ppr(1,1)^2);                % ускорение [м/с^2]
+a_1 = sqrt(j_1prd.^2 + j_1ppr.^2);                % ускорение [м/с^2]
 
-psi_a2(1,1)     = psi_2(1,1) + atan2(j_2ppr(1,1),j_2prd(1,1)); % направление ускорения [рад]
-psi_a2(1,1)     = ANGLE_CORRECT( psi_a2(1,1) );
-psi_a2_deg(1,1) = psi_a2(1,1) *180/pi;                         % направление ускорения [град]
+psi_a1 = psi_1 + atan2(j_1ppr,j_1prd); % направление ускорения [рад]
+psi_a1 = ANGLE_CORRECT( psi_a1 );
+psi_a1_deg = psi_a1 *180/pi;                         % направление ускорения [град]
 
-a_2z(1,1) = a_2(1,1)*sin(psi_a2(1,1));                         % проекция ускорения на ось z [м/с^2]
-a_2x(1,1) = a_2(1,1)*cos(psi_a2(1,1));                         % проекция ускорения на ось x [м/с^2]
+a_1z = a_1.*sin(psi_a1);                         % проекция ускорения на ось z [м/с^2]
+a_1x = a_1.*cos(psi_a1);                         % проекция ускорения на ось x [м/с^2]
+
+
+z_2(1) = z_2_0;
+x_2(1) = x_2_0;
+
+V_2(1) = V_2_0;    % скорость [м/с]
+
+psi_2_deg(1) = psi_2_deg_0 ;    % курс [град]
+psi_2(1) = psi_2_deg(1) *pi/180;              % курс [рад]
+
+j_2prd(1) =    0;    % продольное ускорение [м/с^2]
+j_2ppr(1) =    0;    % поперечное ускорение [м/с^2]
+
+
+V_2z(1) = V_2(1)*sin(psi_2(1));                          % проекция скорости на ось z [м/с]
+V_2x(1) = V_2(1)*cos(psi_2(1));                          % проекция скорости на ось x [м/с]
+
+a_2(1) = sqrt(j_2prd(1)^2 + j_2ppr(1)^2);                % ускорение [м/с^2]
+
+psi_a2(1)     = psi_2(1) + atan2(j_2ppr(1),j_2prd(1)); % направление ускорения [рад]
+psi_a2(1)     = ANGLE_CORRECT( psi_a2(1) );
+psi_a2_deg(1) = psi_a2(1) *180/pi;                         % направление ускорения [град]
+
+a_2z(1) = a_2(1)*sin(psi_a2(1));                         % проекция ускорения на ось z [м/с^2]
+a_2x(1) = a_2(1)*cos(psi_a2(1));                         % проекция ускорения на ось x [м/с^2]
 
        
-alpha(1,1)     = atan2((x_2(1,1) - x_1(1,1)),(z_2(1,1) - z_1(1,1)));
-alpha_deg(1,1) = alpha(1,1) *180/pi;
+alpha(1)     = atan2((x_2(1) - x_1(1)),(z_2(1) - z_1(1)));
+alpha_deg(1) = alpha(1) *180/pi;
 
-phi_1(1,1)     = pi/2 - psi_1(1,1) - alpha(1,1);
-phi_1(1,1)     = ANGLE_CORRECT( phi_1(1,1) );
-phi_1_deg(1,1) = phi_1(1,1) *180/pi;
+phi_1(1)     = pi/2 - psi_1(1) - alpha(1);
+phi_1(1)     = ANGLE_CORRECT( phi_1(1) );
+phi_1_deg(1) = phi_1(1) *180/pi;
 
-phi_2(1,1)     = pi/2 - psi_2(1,1) - alpha(1,1);
-phi_2(1,1)     = ANGLE_CORRECT( phi_2(1,1) );
-phi_2_deg(1,1) = phi_2(1,1) *180/pi;
+phi_2(1)     = pi/2 - psi_2(1) - alpha(1);
+phi_2(1)     = ANGLE_CORRECT( phi_2(1) );
+phi_2_deg(1) = phi_2(1) *180/pi;
 
-D(1,1) = sqrt((z_2(1,1) - z_1(1,1))^2 + (x_2(1,1) - x_1(1,1))^2);
+D(1) = sqrt((z_2(1) - z_1(1))^2 + (x_2(1) - x_1(1))^2);
 
-w(1,1) = (V_1(1,1)*sin(phi_1(1,1)) - V_2(1,1)*sin(phi_2(1,1)))/D(1,1);
-w_deg(1,1) = w(1,1) *180/pi;
+w(1) = (V_1(1)*sin(phi_1(1)) - V_2(1)*sin(phi_2(1)))/D(1);
+w_deg(1) = w(1) *180/pi;
 
-V_r(1,1) = V_1(1,1)*cos(phi_1(1,1)) - V_2(1,1)*cos(phi_2(1,1));
+V_r(1) = V_1(1)*cos(phi_1(1)) - V_2(1)*cos(phi_2(1));
 
-V_t(1,1) = V_1(1,1)*sin(phi_1(1,1)) - V_2(1,1)*sin(phi_2(1,1));
+V_t(1) = V_1(1)*sin(phi_1(1)) - V_2(1)*sin(phi_2(1));
 
-V_o(1,1) = sqrt(V_r(1,1)^2 + V_t(1,1)^2);
+V_o(1) = sqrt(V_r(1)^2 + V_t(1)^2);
 
-h(1,1) = D(1,1)^2*w(1,1)/V_o(1,1);
+h(1) = D(1)^2*w(1)/V_o(1);
             
 %--------------------------------------------------------------
-V_r_a(1,1) = V_r(1,1);
-delta_V_r(1,1) = V_r(1,1) - V_r_a(1,1);
+V_r_a(1) = V_r(1);
+delta_V_r(1) = V_r(1) - V_r_a(1);
             
-D_a(1,1) = D(1,1);
-delta_D(1,1) = D(1,1) - D_a(1,1);
+D_a(1) = D(1);
+delta_D(1) = D(1) - D_a(1);
             
-V_t_a(1,1) = V_t(1,1);
-delta_V_t(1,1) = V_t(1,1) - V_t_a(1,1);
+V_t_a(1) = V_t(1);
+delta_V_t(1) = V_t(1) - V_t_a(1);
             
-w_a(1,1) = w(1,1);
-delta_w(1,1) = w(1,1) - w_a(1,1);
+w_a(1) = w(1);
+delta_w(1) = w(1) - w_a(1);
             
-w_a_deg(1,1) = w_a(1,1) *180/pi;
-delta_w_deg(1,1) = delta_w(1,1) *180/pi;         
+w_a_deg(1) = w_a(1) *180/pi;
+delta_w_deg(1) = delta_w(1) *180/pi;         
 
 
 
 for k = 2:K
     j =1;
-        if flag_stop(j) == 0
+        if flag_stop == 0
             
             z_1(k) = z_1(k-1) + V_1z(k-1)*T + a_1z(k-1)*T^2/2;
             x_1(k) = x_1(k-1) + V_1x(k-1)*T + a_1x(k-1)*T^2/2;
@@ -342,7 +331,7 @@ for k = 2:K
     
     
         
-        if flag_stop(j) == 0
+        if flag_stop == 0
             
 
                     alpha(k)     = atan2((x_2(k) - x_1(k)),(z_2(k) - z_1(k)));
@@ -436,18 +425,20 @@ for k = 2:K
                 
                 
             
-            if sw_stop == 1
+            
                 if ( V_r(k) < 0 )&&( (V_r(k) - V_r(k-1)) < -10 )
                     flag_stop  = 1;
                     K_stop     = k;
                     flag_break = 1;
+                    disp(['Попали в ветку ( V_r(k) < 0 )&&( (V_r(k) - V_r(k-1)) < -10 ) на итерации ' num2str(k) ' курса номер ' num2str(angleViz)])
                 else
                     if ( D(k) <= D_por )
                         flag_stop = 1;
                         K_stop    = k;
+                        disp(['Попали в ветку if ( D(k) <= D_por ) на итерации ' num2str(k) ' курса номер ' num2str(angleViz)])
                     end
                 end
-            end
+            
         end
 end
 
@@ -456,10 +447,13 @@ end
     x1(angleViz,:) = x_1(1,:);
     z2(angleViz,:) = z_2(1,:);
     x2(angleViz,:) = x_2(1,:);
-    K_stop_multilaunch(angleViz) = K_stop(j);
-    flag_miss(angleViz) = flag_break(j);
+    K_stop_multilaunch(angleViz) = K_stop;
+    flag_miss(angleViz) = flag_break;
+    V_rad(angleViz, :) = V_r;
 end
 assignin("base", "flag_miss", flag_miss)
+assignin("base", "V_rad", V_rad)
+assignin("base", "dV_rad", diff(V_rad, 1, 2))
 f_Colours
 
 % положение и размер окна
