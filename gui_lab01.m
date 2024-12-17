@@ -23,21 +23,27 @@ end
 
 
 function gui_lab01_OpeningFcn(hObject, ~, handles, varargin)
+set(gcf, 'WindowState', 'maximized')
 
 handles.output = hObject;
 guidata(hObject, handles);
 
 
 function varargout = gui_lab01_OutputFcn(~, ~, handles) 
+assignin("base", "handles", handles)
 
 varargout{1} = handles.output;
+assignin("base", "varargout", varargout)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 %%% - КНОПКА ПОСТРОЕНИЯ ГРАФИКА В ОКНЕ - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function pushbutton_plot_Callback(hObject, ~, handles)
+function pushbutton_plot_Callback(~, ~, handles)
+
+cla reset
+axes_CreateFcn
 
 if get(handles.checkbox9, 'Value')
     handles.dat09 = 1;
@@ -47,43 +53,40 @@ else
     guidata(gcbo, handles);
 end
 
-% кнопка "Построить" недоступна после вывода графика         % !!!!!!!
-set(hObject, 'Enable', 'off')                                % !!!!!!!
+if get(handles.checkbox10, 'Value')
+    handles.dat10 = 1;
+    guidata(gcbo, handles);
+else
+    handles.dat10 = 0;
+    guidata(gcbo, handles);
+end
 
 % запуск скрипта
 Lab_3_1;
 
-% кнопка "Очистить" доступна после вывода графика            % !!!!!!!
-set(handles.pushbutton_clear, 'Enable', 'on')                % !!!!!!!
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-set(handles.pushbutton4, 'Enable', 'on')    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   
 
 %%% - КНОПКА "ПОСТРОИТЬ" ПЕРВОНАЧАЛЬНО НЕДОСТУПНА - %%%%%%%%%%%%%%%%%%%%%%%
-function pushbutton_plot_CreateFcn(hObject, ~, ~)
+function pushbutton_plot_CreateFcn(~, ~, ~)
 
-set(hObject, 'Enable', 'off')                                              % !!!!!!!
+% set(hObject, 'Enable', 'off')                                              % !!!!!!!
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
 
 %%% - КНОПКА ОЧИСТКИ ОКНА С ГРАФИКАМИ - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function pushbutton_clear_Callback(hObject, ~, handles)
+function pushbutton_clear_Callback(~, ~, ~)
 
 % очистка осей
 cla reset
 axes_CreateFcn
 
-% кнопка "Очистить" недоступна после очистки                               % !!!!!!!
-set(hObject, 'Enable', 'off')                                              % !!!!!!!
-
-% кнопка "Построить" доступна после очистки                                % !!!!!!!
-set(handles.pushbutton_plot, 'Enable', 'on')                               % !!!!!!!
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-set(handles.pushbutton4, 'Enable', 'off')
 
-%%% - КНОПКА "ОЧИСТИТЬ" ПЕРВОНАЧАЛЬНО НЕДОСТУПНА - %%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function pushbutton_clear_CreateFcn(hObject, ~, ~)
 
-set(hObject, 'Enable', 'off')                                              % !!!!!!!
+set(hObject, 'Enable', 'on')
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -586,3 +589,12 @@ function checkbox9_Callback(~, ~, ~)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hint: get(hObject,'Value') returns toggle state of checkbox9
+
+
+% --- Executes on button press in checkbox10.
+function checkbox10_Callback(~, ~, ~)
+% hObject    handle to checkbox10 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of checkbox10

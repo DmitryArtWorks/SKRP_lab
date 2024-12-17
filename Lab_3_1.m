@@ -4,7 +4,7 @@ x_1_0 = handles.datx11 * 10^3;%25 *10^3;     % координата x [м]
 
 V_1_0 = handles.dat_V11;%400;          % скорость [м/с]
 
-psi_1_deg_0 = handles.dat_psi11;%5;      % курс [град]
+psi_1_deg_init = handles.dat_psi11;%5;      % курс [град]
 
 
 % цель
@@ -13,7 +13,7 @@ x_2_0 = handles.datx21 * 10^3;%70 *10^3;     % координата x [м]
 
 V_2_0 = handles.datV2;%200;          % скорость [м/с]
 
-psi_2_deg_init = handles.datpsi2;%75;     % курс [град]
+psi_2_deg_0 = handles.datpsi2;%75;     % курс [град]
 
 D_rk = handles.dat_K_31* 10^3;%19 *10^3;     % дальность этапа радиокоррекции
 T_rk = handles.dat_K_32;%10;           % период радиокоррекции
@@ -38,34 +38,35 @@ sw_obup_4 = 0;
 
 sw_cel = 0;
 
-% sw_manevr_celi = 0;     
-                        j_2ppr_m1 = + 1.5;
+j_2ppr_m1 = + 1.5;
 
-                        T_sin = 120;
-                        j_2ppr_m2 = - 10;
+T_sin = 120;
+j_2ppr_m2 = - 10;
 
 
 N_m3 = 3;
 
 sw_j_1ppr_gr = 0;
-                        j_1ppr_gr = 5;
+j_1ppr_gr = 5;
 
 sw_inerc = 0;
-                        T_j = 10;
+T_j = 10;
 
 sw_stop = 1;
 
 sw_linviz_1 = handles.dat09;
-sw_linviz_2 = 0;
-sw_linviz_3 = 0;
-sw_linviz_4 = 0;
 
 
 D_por = 30;
 
 t_linviz = 10;
 
-
+multilaunch_flag = handles.dat10;
+if  multilaunch_flag == 1
+    NumDirs = 6;
+else
+    NumDirs = 1;
+end
 
 t0 = 0;
 tk = handles.dat_tk;%500;
@@ -76,12 +77,14 @@ K = numel(t);
 C = [ sw_obup_1 sw_obup_2 sw_obup_3 sw_obup_4 ].*[ 1 2 3 4 ];
 C(~C) = [];
 
-NumDirs = 6;
+
+
 z1 = zeros(NumDirs,K); x1 = zeros(NumDirs,K);
 z2 = zeros(NumDirs,K); x2 = zeros(NumDirs,K);
+K_stop_multilaunch = zeros(NumDirs);
 
 for angleViz = 1:NumDirs
-    psi_2_deg_0 = psi_2_deg_init + 60 * (angleViz - 1);
+    psi_1_deg_0 = psi_1_deg_init + 60 * (angleViz - 1);
 
     for i = 1:1
     
@@ -665,9 +668,6 @@ for angleViz = 1:NumDirs
     
                 end
     
-    
-    
-                if sw_stop == 1
                     if ( V_r(j,k) < 0 )&&( (V_r(j,k) - V_r(j,k-1)) < -10 ) % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
                         flag_stop(j) = 1;
                         K_stop(j)    = k;
@@ -678,22 +678,22 @@ for angleViz = 1:NumDirs
                             K_stop(j)    = k;
                         end
                     end
-                end
             end
         end
     end
-    
-    
+    % disp(K_stop)
+    % assignin("base", "D", D)
     
     z1(angleViz,:) = z_1(1,:);
     x1(angleViz,:) = x_1(1,:);
     z2(angleViz,:) = z_2(1,:);
     x2(angleViz,:) = x_2(1,:);
+    K_stop_multilaunch(angleViz) = K_stop(j);
 end
 f_Colours
 
 % положение и размер окна
-% L_left   = 200 - 1920 ;
+
 L_left   = 200  ;
 L_bottom = 50   ;
 L_width  = 1500 ;
@@ -706,25 +706,31 @@ L_height = 900  ;
 sw_graph = handles.dat3;
 switch sw_graph
     case 1
+        cla reset
         hold on
         for i = 1:NumDirs
-            z_1 = z1(angleViz,:);
-            x_1 = x1(angleViz,:);
-            z_2 = z2(angleViz,:);
-            x_2 = x2(angleViz,:);
+            z_1 = z1(i,:); x_1 = x1(i,:);
+            z_2 = z2(i,:); x_2 = x2(i,:);
+            K_stop = K_stop_multilaunch(i);
             graph_001_traektorii_fg
         end
-        hold off
+        % hold off
+
     case 2
         graph_002_D
+
     case 3
         graph_003_j_ppr
+
     case 4
         graph_004_h
+
     case 5
         graph_005_S_h_fg
+
     case 6 
         graph_006_w_fg
+
     case 7 
         graph_007_Alpha_fg
 end
