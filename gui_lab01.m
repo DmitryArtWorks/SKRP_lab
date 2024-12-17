@@ -72,10 +72,6 @@ function pushbutton_clear_Callback(hObject, ~, handles)
 cla reset
 axes_CreateFcn
 
-
-
-
-
 % кнопка "Очистить" недоступна после очистки                               % !!!!!!!
 set(hObject, 'Enable', 'off')                                              % !!!!!!!
 
