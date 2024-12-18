@@ -1,4 +1,8 @@
-
+z_1 = z1(Dir,:); x_1 = x1(Dir,:);
+z_2 = z2(Dir,:); x_2 = x2(Dir,:);
+K_stop = K_stop_multilaunch(Dir);
+flag_break = flag_miss(Dir);
+xlabel('Z, м'); ylabel('X, м');
 %-------------------------------------------------------------------------%
 %- ЛИНИИ ВИЗИРОВАНИЯ -----------------------------------------------------%
 %-------------------------------------------------------------------------%
@@ -16,7 +20,6 @@ end
 
 % Индикатор попадания
 if flag_break(1) == 1   % Ветка "промаха"
-    % set(gca, 'ColorOrder', Red);
     line( z_1(K_stop), x_1(K_stop), 'Marker', '*', 'LineWidth', 10, 'Color', Red ) % метка конца траектории
         
     % Цель
@@ -26,11 +29,8 @@ if flag_break(1) == 1   % Ветка "промаха"
     % ОУ
     line( z_1(1,1:K_stop), x_1(1,1:K_stop), 'LineStyle', '-', 'LineWidth', 1, 'Color', BlueDark ) % траектория движения ОУ
     line( z_1(1,1), x_1(1,1), 'Marker', '*', 'LineWidth', 2, 'Color', BlueDark ) % Исходная точка ОУ
-        
-    disp(['Попали в ветку промаха, итерация ' num2str(i)])
     
 else % Ветка "попадания"
-    % set(gca, 'ColorOrder', YellowOrange);
     line( z_1(K_stop), x_1(K_stop), 'Marker', '*', 'LineWidth', 10, 'Color', YellowOrange ) % Метка конца траектории
         
     % Цель
@@ -40,8 +40,6 @@ else % Ветка "попадания"
     % ОУ
     line( z_1(1:K_stop), x_1(1:K_stop), 'LineStyle', '-', 'LineWidth', 1, 'Color', YellowOrange ) % траектория движения ОУ
     line( z_1(1), x_1(1), 'Marker', '*', 'LineWidth', 2, 'Color', YellowOrange ) % Исходная точка ОУ
-        
-    disp(['Попали в ветку попадания, итерация ' num2str(i)])
 end
     
 

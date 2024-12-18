@@ -27,7 +27,8 @@ set(gcf, 'WindowState', 'maximized')
 
 handles.output = hObject;
 guidata(hObject, handles);
-
+set(handles.uipanel29, 'Visible', 'off')
+set(handles.checkbox10, 'Value', 0)
 
 function varargout = gui_lab01_OutputFcn(~, ~, handles) 
 assignin("base", "handles", handles)
@@ -592,9 +593,71 @@ function checkbox9_Callback(~, ~, ~)
 
 
 % --- Executes on button press in checkbox10.
-function checkbox10_Callback(~, ~, ~)
+function checkbox10_Callback(hObject, ~, handles)
 % hObject    handle to checkbox10 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hint: get(hObject,'Value') returns toggle state of checkbox10
+if get(hObject, 'Value')
+    set(handles.uipanel29, 'Visible', 'on')
+else
+    set(handles.uipanel29, 'Visible', 'off')
+end
+
+function launchCnt_Callback(hObject, ~, handles)
+% hObject    handle to launchCnt (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of launchCnt as text
+%        str2double(get(hObject,'String')) returns contents of launchCnt as a double
+handles.dat_LaunchCnt = str2double(get(hObject,'String'));
+guidata(gcbo, handles);
+
+% --- Executes during object creation, after setting all properties.
+function launchCnt_CreateFcn(hObject, ~, handles)
+% hObject    handle to launchCnt (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+handles.dat_LaunchCnt = str2double(get(hObject,'String'));
+guidata(gcbo, handles);
+
+function LaunchAngles_Callback(hObject, ~, handles)
+% hObject    handle to LaunchAngles (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of LaunchAngles as text
+%        str2double(get(hObject,'String')) returns contents of LaunchAngles as a double
+handles.dat_LaunchAngles = str2double(get(hObject,'String'));
+guidata(gcbo, handles);
+
+% --- Executes during object creation, after setting all properties.
+function LaunchAngles_CreateFcn(hObject, ~, handles)
+% hObject    handle to LaunchAngles (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+handles.dat_LaunchAngles = str2double(get(hObject,'String'));
+guidata(gcbo, handles);
+
+% --- Executes on key press with focus on checkbox10 and none of its controls.
+function checkbox10_KeyPressFcn(~, ~, ~)
+% hObject    handle to checkbox10 (see GCBO)
+% eventdata  structure with the following fields (see MATLAB.UI.CONTROL.UICONTROL)
+%	Key: name of the key that was pressed, in lower case
+%	Character: character interpretation of the key(s) that was pressed
+%	Modifier: name(s) of the modifier key(s) (i.e., control, shift) pressed
+% handles    structure with handles and user data (see GUIDATA)
