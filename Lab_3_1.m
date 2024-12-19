@@ -108,7 +108,7 @@ for angleViz = 1:NumDirs % Цикл моделирования. Считаем все параметры разом для в
 
     flag_noimpact = 1; % Флаг, указывающий на то, что в данной итерации запуска попадания ещё не произошло
 
-
+    % Продолжаем инициализировать всё, что только можно
     z_1 = zeros(1,K); x_1 = zeros(1,K); V_1 = zeros(1,K); psi_1 = zeros(1,K); psi_1_deg = zeros(1,K); j_1prd = zeros(1,K); j_1ppr = zeros(1,K);
     z_2 = zeros(1,K); x_2 = zeros(1,K); V_2 = zeros(1,K); psi_2 = zeros(1,K); psi_2_deg = zeros(1,K); j_2prd = zeros(1,K); j_2ppr = zeros(1,K);
     V_2z = zeros(1,K); V_2x = zeros(1,K); a_2 = zeros(1,K); psi_a2 = zeros(1,K); psi_a2_deg = zeros(1,K); a_2z = zeros(1,K); a_2x = zeros(1,K);
@@ -117,7 +117,12 @@ for angleViz = 1:NumDirs % Цикл моделирования. Считаем все параметры разом для в
     D = zeros(1,K); w = zeros(1,K); w_deg = zeros(1,K); V_r = zeros(1,K); V_t = zeros(1,K); V_o = zeros(1,K); 
     h = zeros(1,K); phi_1_treb = zeros(1,K); w_treb = zeros(1,K);
     
-    flag_stop = 0; K_stop = K; flag_plot = 0; D_0 = 0; flag_break = 0; S_h = zeros(1,K);   
+    flag_stop = 0;
+    K_stop = K;
+    flag_plot = 0;
+    D_0 = 0;
+    flag_break = 0;
+    S_h = zeros(1,K);   
     V_r_a = zeros(1,K); delta_V_r = zeros(1,K); D_a = zeros(1,K); delta_D = zeros(1,K);
     V_t_a = zeros(1,K); delta_V_t = zeros(1,K);
     w_a = zeros(1,K); delta_w = zeros(1,K);
@@ -323,10 +328,8 @@ for angleViz = 1:NumDirs % Цикл моделирования. Считаем все параметры разом для в
             w_a_deg(k) = w_a(k) *180/pi;
             delta_w_deg(k) = delta_w(k) *180/pi;
                         
-            if D(k) < D_rk
-                            
-                if mod(k,K_rk) == 0
-                                
+            if D(k) < D_rk     
+                if mod(k,K_rk) == 0          
                     V_r_a(k) = V_r(k);
                     delta_V_r(k) = V_r(k) - V_r_a(k);
     
@@ -341,12 +344,10 @@ for angleViz = 1:NumDirs % Цикл моделирования. Считаем все параметры разом для в
     
                     w_a_deg(k) = w_a(k) *180/pi;
                     delta_w_deg(k) = delta_w(k) *180/pi;
-                            
                 end                
             end
                         
-            if D(k) < D_sn
-                            
+            if D(k) < D_sn         
                 V_r_a(k) = V_r(k);
                 delta_V_r(k) = V_r(k) - V_r_a(k);
     
@@ -360,8 +361,7 @@ for angleViz = 1:NumDirs % Цикл моделирования. Считаем все параметры разом для в
                 delta_w(k) = w(k) - w_a(k);
     
                 w_a_deg(k) = w_a(k) *180/pi;
-                delta_w_deg(k) = delta_w(k) *180/pi;
-                            
+                delta_w_deg(k) = delta_w(k) *180/pi;           
             end
                 
             if ( V_r(k) < 0 )&&( (V_r(k) - V_r(k-1)) < -10 )
@@ -375,7 +375,6 @@ for angleViz = 1:NumDirs % Цикл моделирования. Считаем все параметры разом для в
                     flag_noimpact = 0;
                 end
             end
-                
         end
     end
 
@@ -391,7 +390,7 @@ f_Colours
 
 % Запуск скрипта для отображения требуемого графика
 sw_graph = handles.dat3; % выбор скрипта на основе данных из GUI
-cla reset % Настройка графика
+cla reset 
 hold on
 grid on
 box on
@@ -399,26 +398,192 @@ axis fill
 set(gca, 'FontSize', 12);
 
 switch sw_graph
-    case 1
+    case 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    1. Траектории
         for Dir = 1:NumDirs
-            graph_001_traektorii_fg
+            z_1 = z1(Dir,:); x_1 = x1(Dir,:);
+            z_2 = z2(Dir,:); x_2 = x2(Dir,:);
+            K_stop = K_stop_multilaunch(Dir);
+            flag_break = flag_miss(Dir);
+            xlabel('Z, м'); ylabel('X, м');
+            %-------------------------------------------------------------------------%
+            %- ЛИНИИ ВИЗИРОВАНИЯ -----------------------------------------------------%
+            %-------------------------------------------------------------------------%
+            step_lv = t_linviz/T;   % количество тактов между выводами ЛВ
+            if sw_linviz_1
+                for n = 1:step_lv:K_stop
+                    plot( [z_1(n) z_2(n)], [x_1(1,n) x_2(1,n)], 'LineWidth', 1, 'Color', BlueBright)
+                end
+            end
+                   
+            %-------------------------------------------------------------------------%
+            %- ТРАЕКТОРИИ И ИНДИКАТОР ПОПАДАНИЯ --------------------------------------%
+            %-------------------------------------------------------------------------%       
+            
+            % Индикатор попадания
+            if flag_break(1) == 1   % Ветка "промаха"
+                line( z_1(K_stop), x_1(K_stop), 'Marker', '*', 'LineWidth', 10, 'Color', Red ) % метка конца траектории
+                    
+                % Цель
+                line( z_2(1:K_stop), x_2(1:K_stop), 'LineWidth', 1, 'Color', BlueDark ) % траектория движения цели
+                line( z_2(1), x_2(1), 'Marker', '*', 'LineWidth', 2, 'Color', BlueDark) % Исходная точка цели
+            
+                % ОУ
+                line( z_1(1,1:K_stop), x_1(1,1:K_stop), 'LineStyle', '-', 'LineWidth', 1, 'Color', BlueDark ) % траектория движения ОУ
+                line( z_1(1,1), x_1(1,1), 'Marker', '*', 'LineWidth', 2, 'Color', BlueDark ) % Исходная точка ОУ
+                
+            else % Ветка "попадания"
+                line( z_1(K_stop), x_1(K_stop), 'Marker', '*', 'LineWidth', 10, 'Color', YellowOrange ) % Метка конца траектории
+                    
+                % Цель
+                line( z_2(1:K_stop), x_2(1:K_stop), 'LineWidth', 1, 'Color', YellowOrange) % траектория движения цели
+                line( z_2(1), x_2(1), 'Marker', '*', 'LineWidth', 2, 'Color', YellowOrange ) % Исходная точка цели
+                    
+                % ОУ
+                line( z_1(1:K_stop), x_1(1:K_stop), 'LineStyle', '-', 'LineWidth', 1, 'Color', YellowOrange ) % траектория движения ОУ
+                line( z_1(1), x_1(1), 'Marker', '*', 'LineWidth', 2, 'Color', YellowOrange ) % Исходная точка ОУ
+            end
+                
+            
+            % Подписи к исходным точкам
+            h_ou1 = text(z_1(1,1), x_1(1,1), 'ОУ1', ...
+                         'VerticalAlignment', 'top', ...
+                         'HorizontalAlignment', 'center',...
+                         'FontSize', 12);
+            
+            h_c = text(z_2(1,1), x_2(1,1), 'Ц', ...
+                      'VerticalAlignment', 'top', ...
+                      'HorizontalAlignment', 'center',...
+                      'FontSize', 12);
         end
-    case 2
-        graph_002_D
+    
+    case 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    2. Дальность от времени
+        set(gca, 'XLim', [ 0   tk ]);
+        
+        xlabel('t, с');
+        ylabel('D, м');
+        
+        set(gca, 'ColorOrder', BlueDark);
+        plot(t(1:K_stop(1)), D(1,1:K_stop(1)), '-', 'LineWidth', 1)
+            
+        if flag_stop(1) == 1
+            if flag_break(1) == 1
+                set(gca, 'ColorOrder', Red);
+            else
+                set(gca, 'ColorOrder', YellowOrange);
+            end
+            plot(t(K_stop(1)), D(1,K_stop(1)), '*', 'LineWidth', 10)
+        end
 
-    case 3
-        graph_003_j_ppr
+    case 3 %%%%%%%%%%%%%%%%%%%%%%%%%%    3. Поперечное ускорение от времени
+        set(gca, 'XLim', [ 0   tk ]);
+        
+        Y_max = max(abs(j_1ppr), [], 'all');
+        set(gca, 'YLim', [-1.1*Y_max 1.1*Y_max]);
+        
+        xlabel('t, с');
+        if sw_j_1ppr_gr == 1
+            ylabel('j_{1ппр}, j_{1гр}, j_{2ппр}, м/с^2');
+        else
+            ylabel('j_{1ппр}, j_{2ппр}, м/с^2');
+        end
+        
+        %- поперечное ускорение цели ---------------------------------------------%
+        set(gca, 'ColorOrder', Red);
+        plot(t, j_2ppr(1,:), '--b', 'LineWidth', 1)
+        
+        %- граничные значения ускорения ------------------------------------------%
+        if sw_j_1ppr_gr == 1
+            set(gca, 'ColorOrder', Green);
+            plot(t, - j_1ppr_gr*ones(1,K), t, j_1ppr_gr*ones(1,K), '-', 'LineWidth', 1)
+        end
+        
+        %- поперечное ускорение ОУ -----------------------------------------------%
+        set(gca, 'ColorOrder', BlueDark);
+        plot(t(1:K_stop(1)), j_1ppr(1:K_stop(1)), '-', 'LineWidth', 1)
+            
+        if flag_stop(1) == 1
+            if flag_break(1) == 1
+                set(gca, 'ColorOrder', Red);
+            else
+            set(gca, 'ColorOrder', YellowOrange);
+            end
+            plot(t(K_stop(1)), j_1ppr(K_stop(1)), '*', 'LineWidth', 10)
+        end
 
-    case 4
-        graph_004_h
+    case 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    4. Линейный промах от времени
+        set(gca, 'XLim', [ 0   tk ]);
+        
+        %-----------------------------------------
+        Y_max = max(abs(h), [], 'all');
+        set(gca, 'YLim', [-1.1*Y_max 1.1*Y_max]);
+        %----------------------------------------
+        xlabel('t, с');
+        ylabel('h, м');
+        
+        plot(t, zeros(1,K), '--b', 'LineWidth', 1)
+        
+        set(gca, 'ColorOrder', BlueDark);
+        plot(t(1:K_stop(1)), h(1,1:K_stop(1)), '-', 'LineWidth', 1)
+            
+        if flag_stop(1) == 1
+            if flag_break(1) == 1
+                set(gca, 'ColorOrder', Red);
+            else
+                set(gca, 'ColorOrder', YellowOrange);
+            end
+            plot(t(K_stop(1)), h(1,K_stop(1)), '*', 'LineWidth', 10)
+        end
 
-    case 5
-        graph_005_S_h_fg
+    case 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%    5. Площадь под графиком промаха
+        set(gca, 'XLim', [ 0   tk ]);
+        
+        xlabel('t, с');
+        ylabel('S_h, м*с');
+        
+        set(gca, 'ColorOrder', BlueDark);
+        plot(t(1:K_stop(1)), S_h(1,1:K_stop(1)), '-', 'LineWidth', 1)
+            
+        if flag_stop(1) == 1
+            if flag_break(1) == 1
+                set(gca, 'ColorOrder', Red);
+            else
+                set(gca, 'ColorOrder', YellowOrange);
+            end
+            plot(t(K_stop(1)), S_h(1,K_stop(1)), '*', 'LineWidth', 10)
+        end
 
-    case 6 
-        graph_006_w_fg
+    case 6 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    6. Угловая скорость ЛВ
+        set(gca, 'XLim', [ 0   tk ]);
+        
+        xlabel('t, с');
+        ylabel('\omega, град');
+        
+        Y_max = max(abs(w_deg), [], 'all');
+        set(gca, 'YLim', [-1.1*Y_max 1.1*Y_max]);
+        
+        set(gca, 'ColorOrder', Red);
+        plot(t, zeros(1,K), '--b', 'LineWidth', 1)
+    
+        set(gca, 'ColorOrder', BlueDark);
+        plot(t(1:K_stop(1)), w_deg(1,1:K_stop(1)), '-', 'LineWidth', 1)
+        
+        if flag_stop(1) == 1
+            if flag_break(1) == 1
+                set(gca, 'ColorOrder', Red);
+            else
+                set(gca, 'ColorOrder', YellowOrange);
+            end
+            plot(t(K_stop(1)), w_deg(1,K_stop(1)), '*', 'LineWidth', 10)
+        end
 
-    case 7 
-        graph_007_Alpha_fg
+    case 7 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    7. ЛВ
+        xlabel('t, с');
+        ylabel('epsilon, град');
+        set(gca, 'ColorOrder', BlueDark);
+        plot(t(1:K_stop(1)), alpha_deg(1:K_stop(1)), '-', 'LineWidth', 1)
+        if flag_stop == 1
+            set(gca, 'ColorOrder', YellowOrange);
+            plot(t(K_stop(1)), alpha_deg(K_stop(1)), '*', 'LineWidth', 10)
+        end
 end
 

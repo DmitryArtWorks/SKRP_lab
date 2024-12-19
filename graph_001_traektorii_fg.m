@@ -7,7 +7,6 @@ xlabel('Z, м'); ylabel('X, м');
 %- ЛИНИИ ВИЗИРОВАНИЯ -----------------------------------------------------%
 %-------------------------------------------------------------------------%
 step_lv = t_linviz/T;   % количество тактов между выводами ЛВ
-% set(gca, 'ColorOrder', BlueBright);
 if sw_linviz_1
     for n = 1:step_lv:K_stop
         plot( [z_1(n) z_2(n)], [x_1(1,n) x_2(1,n)], 'LineWidth', 1, 'Color', BlueBright)

@@ -1,4 +1,3 @@
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% - ‘”Õ ÷»» »Õ»÷»¿À»¿÷»». Õ≈ “–Œ√¿“‹!!! - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -22,6 +21,9 @@ else
 end
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% - ‘”Õ »ﬂ, ¬€«€¬¿≈Ã¿ﬂ œ–» œ≈–¬ŒÃ Œ“ –€“»» Œ Õ¿ - %%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function gui_lab01_OpeningFcn(hObject, ~, handles, varargin)
 set(gcf, 'WindowState', 'maximized')
 
@@ -30,19 +32,21 @@ guidata(hObject, handles);
 set(handles.uipanel29, 'Visible', 'off')
 set(handles.checkbox10, 'Value', 0)
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% - ‘”Õ »ﬂ, œŒ«¬ŒÀﬂﬁŸ¿ﬂ ¬€¬≈—“» ¬—® ¬ ¬Œ– —œ≈…—. œŒÀ≈«ÕŒ ƒÀﬂ ƒ≈¡¿√¿ - %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function varargout = gui_lab01_OutputFcn(~, ~, handles) 
 assignin("base", "handles", handles)
 
 varargout{1} = handles.output;
 assignin("base", "varargout", varargout)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-%%% -  ÕŒœ ¿ œŒ—“–Œ≈Õ»ﬂ √–¿‘» ¿ ¬ Œ Õ≈ - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% -  ÕŒœ ¿, ¬€«€¬¿≈Ã¿ﬂ Õ¿∆¿“»≈Ã  ÕŒœ » "œŒ—“–Œ»“‹" - %%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function pushbutton_plot_Callback(~, ~, handles)
-
 cla reset
 axes_CreateFcn
 
@@ -65,33 +69,34 @@ end
 % Á‡ÔÛÒÍ ÒÍËÔÚ‡
 Lab_3_1;
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   
 
-%%% -  ÕŒœ ¿ "œŒ—“–Œ»“‹" œ≈–¬ŒÕ¿◊¿À‹ÕŒ Õ≈ƒŒ—“”œÕ¿ - %%%%%%%%%%%%%%%%%%%%%%%
-function pushbutton_plot_CreateFcn(~, ~, ~)
-
-% set(hObject, 'Enable', 'off')                                              % !!!!!!!
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% - ‘” Õ÷»ﬂ, ¬€«€¬¿≈Ã¿ﬂ œ–» »Õ»÷»¿À»«¿÷»»  ÕŒœ » "œŒ—“–Œ»“‹" - %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+function pushbutton_plot_CreateFcn(hObject, ~, ~)
+set(hObject, 'Enable', 'off')                                              
  
 
-%%% -  ÕŒœ ¿ Œ◊»—“ » Œ Õ¿ — √–¿‘» ¿Ã» - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% -  ÕŒœ ¿, ¬€«€¬¿≈Ã¿ﬂ Õ¿∆¿“»≈Ã  ÕŒœ » "Œ◊»—“»“‹" - %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function pushbutton_clear_Callback(~, ~, ~)
-
-% Ó˜ËÒÚÍ‡ ÓÒÂÈ
+% Œ˜ËÒÚÍ‡ ÓÒÂÈ
 cla reset
-axes_CreateFcn
+axes_CreateFcn % ¬˚ÁÓ‚ ÙÛÌÍˆËË, ÍÓÚÓ‡ˇ ËÌËˆË‡ÎËÁËÛÂÚ „‡ÙËÍ
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
+%%% - ‘” Õ÷»ﬂ, ¬€«€¬¿≈Ã¿ﬂ œ–» »Õ»÷»¿À»«¿÷»»  ÕŒœ » "Œ◊»—“»“‹" - %%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function pushbutton_clear_CreateFcn(hObject, ~, ~)
 
 set(hObject, 'Enable', 'on')
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
 %%% - œ≈–¬ŒÕ¿◊¿À‹Õ¿ﬂ Õ¿—“–Œ… ¿ Œ—≈… - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function axes_CreateFcn(~, ~, ~)
 % axis equal
 box on
@@ -102,11 +107,11 @@ set(gca, 'YLim', [ 0  4.0*10^3 ]);
 
 xlabel('L, Ï');
 ylabel('H, Ï');
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-%%% - Ã≈Õﬁ ¬€¡Œ–¿ Ã¿Õ≈¬–¿ - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% - ‘”Õ ÷»ﬂ, ¬€«€¬¿≈Ã¿ﬂ œ–» »«Ã≈Õ≈Õ»» ›À≈Ã≈Õ“¿ Ã≈Õﬁ ¬€¡Œ–¿ Ã¿Õ≈¬–¿ - %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function popupmenu_manevr_Callback(hObject, ~, handles)
 
 slctn = get(hObject,'Value');
@@ -132,15 +137,20 @@ else
     set(handles.pushbutton_plot, 'Enable', 'off')                          % !!!!!!!
 end
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% - ‘” Õ÷»ﬂ, ¬€«€¬¿≈Ã¿ﬂ œ–» »Õ»÷»¿À»«¿÷»» Ã≈Õﬁ ¬€¡Œ–¿ Ã¿Õ≈¬–¿ - %%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function popupmenu_manevr_CreateFcn(hObject, ~, ~)
 
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%%% - Ã≈Õﬁ ¬€¡Œ–¿ ¬»ƒ¿ √–¿‘» ¿ - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% - Ã≈Õﬁ, ¬€«€¬¿≈Ã¿ﬂ œ–» »«Ã≈Õ≈Õ»» «Õ¿◊≈Õ»ﬂ ¬ Ã≈Õﬁ ¬€¡Œ–¿ Ã¿Õ≈¬–¿ - %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function popupmenu_graph_Callback(hObject, ~, handles)
 
 slctn = get(hObject,'Value');
@@ -168,7 +178,6 @@ switch slctn
         guidata(gcbo, handles);
 end
 
-
 slctn2 = get(handles.popupmenu_manevr,'Value');
 
 if ((slctn2 - 1)*(slctn - 1)) > 0
@@ -178,21 +187,29 @@ else
     set(handles.pushbutton_plot, 'Enable', 'off')                          % !!!!!!!
 end
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% - ‘” Õ÷»ﬂ, ¬€«€¬¿≈Ã¿ﬂ œ–» »Õ»÷»¿À»«¿÷»» Ã≈Õﬁ ¬€¡Œ–¿ √–¿‘» ¿ - %%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function popupmenu_graph_CreateFcn(hObject, ~, ~)
 
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
 %%% - Œ¡À¿—“‹ ¬¬Œƒ¿  ŒŒ–ƒ»Õ¿“€ Z11 - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function edit_z11_Callback(hObject, ~, handles)
 
 handles.datz11 = str2double(get(hObject,'String'));
 guidata(gcbo, handles);
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% - Œ¡À¿—“‹ »Õ»÷»¿À»«¿÷»» Œ Õ¿ ¬¬Œƒ¿  ŒŒ–ƒ»Õ¿“€ Z11 - %%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function edit_z11_CreateFcn(hObject, ~, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
@@ -200,15 +217,20 @@ end
 
 handles.datz11 = str2double(get(hObject,'String'));
 guidata(gcbo, handles);
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
 %%% - Œ¡À¿—“‹ ¬¬Œƒ¿  ŒŒ–ƒ»Õ¿“€ X11 - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function edit_x11_Callback(hObject, ~, handles)
 
 handles.datx11 = str2double(get(hObject,'String'));
 guidata(gcbo, handles);
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% - Œ¡À¿—“‹ »Õ»÷»¿À»«¿÷»» Œ Õ¿ ¬¬Œƒ¿  ŒŒ–ƒ»Õ¿“€ X11 - %%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function edit_x11_CreateFcn(hObject, ~, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
@@ -216,16 +238,20 @@ end
 
 handles.datx11 = str2double(get(hObject,'String'));
 guidata(gcbo, handles);
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
 %%% - Œ¡À¿—“‹ ¬¬Œƒ¿  ŒŒ–ƒ»Õ¿“€ Z21 - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function edit_z21_Callback(hObject, ~, handles)
 
 handles.datz21 = str2double(get(hObject,'String'));
 guidata(gcbo, handles);
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% - Œ¡À¿—“‹ »Õ»÷»¿À»«¿÷»» Œ Õ¿ ¬¬Œƒ¿  ŒŒ–ƒ»Õ¿“€ Z21 - %%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function edit_z21_CreateFcn(hObject, ~, handles)
 
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
@@ -234,15 +260,20 @@ end
 
 handles.datz21 = str2double(get(hObject,'String'));
 guidata(gcbo, handles);
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
 %%% - Œ¡À¿—“‹ ¬¬Œƒ¿  ŒŒ–ƒ»Õ¿“€ X21 - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function edit_x21_Callback(hObject, ~, handles)
 
 handles.datx21 = str2double(get(hObject,'String'));
 guidata(gcbo, handles);
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% - Œ¡À¿—“‹ »Õ»÷»¿À»«¿÷»» Œ Õ¿ ¬¬Œƒ¿  ŒŒ–ƒ»Õ¿“€ X21 - %%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function edit_x21_CreateFcn(hObject, ~, handles)
 
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
@@ -251,16 +282,20 @@ end
 
 handles.datx21 = str2double(get(hObject,'String'));
 guidata(gcbo, handles);
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
 %%% - Œ¡À¿—“‹ ¬¬Œƒ¿ — Œ–Œ—“» V11 - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function edit_V11_Callback(hObject, ~, handles)
 
 handles.dat_V11 = str2double(get(hObject,'String'));
 guidata(gcbo, handles);
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% - Œ¡À¿—“‹ »Õ»÷»¿À»«¿÷»» Œ Õ¿ ¬¬Œƒ¿ — Œ–Œ—“» V11 - %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function edit_V11_CreateFcn(hObject, ~, handles)
 
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
@@ -269,16 +304,20 @@ end
 
 handles.dat_V11 = str2double(get(hObject,'String'));
 guidata(gcbo, handles);
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
 %%% - Œ¡À¿—“‹ ¬¬Œƒ¿ — Œ–Œ—“» V2 - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function edit_V2_Callback(hObject, ~, handles)
 
 handles.datV2 = str2double(get(hObject,'String'));
 guidata(gcbo, handles);
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% - Œ¡À¿—“‹ »Õ»÷»¿À»«¿÷»» Œ Õ¿ ¬¬Œƒ¿ — Œ–Œ—“» V2 - %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function edit_V2_CreateFcn(hObject, ~, handles)
 
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
@@ -287,18 +326,20 @@ end
 
 handles.datV2 = str2double(get(hObject,'String'));
 guidata(gcbo, handles);
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-
-
 %%% - Œ¡À¿—“‹ ¬¬Œƒ¿ — Œ–Œ—“» PSI11 - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function edit_psi11_Callback(hObject, ~, handles)
 
 handles.dat_psi11 = str2double(get(hObject,'String'));
 guidata(gcbo, handles);
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% - Œ¡À¿—“‹ »Õ»÷»¿À»«¿÷»» Œ Õ¿ ¬¬Œƒ¿ — Œ–Œ—“» PSI11 - %%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function edit_psi11_CreateFcn(hObject, ~, handles)
 
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
@@ -307,20 +348,20 @@ end
 
 handles.dat_psi11 = str2double(get(hObject,'String'));
 guidata(gcbo, handles);
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-
-
-
-
 %%% - Œ¡À¿—“‹ ¬¬Œƒ¿ — Œ–Œ—“» PSI2 - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function edit_psi2_Callback(hObject, ~, handles)
 
 handles.datpsi2 = str2double(get(hObject,'String'));
 guidata(gcbo, handles);
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% - Œ¡À¿—“‹ »Õ»÷»¿À»«¿÷»» Œ Õ¿ ¬¬Œƒ¿ — Œ–Œ—“» PSI2 - %%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function edit_psi2_CreateFcn(hObject, ~, handles)
 
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
@@ -329,16 +370,20 @@ end
 
 handles.datpsi2 = str2double(get(hObject,'String'));
 guidata(gcbo, handles);
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
 %%% - Œ¡À¿—“‹ ¬¬Œƒ¿ tk - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function edit_tk_Callback(hObject, ~, handles)
 
 handles.dat_tk = str2double(get(hObject,'String'));
 guidata(gcbo, handles);
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% - Œ¡À¿—“‹ »Õ»÷»¿À»«¿÷»» Œ Õ¿ ¬¬Œƒ¿ tk - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function edit_tk_CreateFcn(hObject, ~, handles)
 
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
@@ -347,15 +392,20 @@ end
 
 handles.dat_tk = str2double(get(hObject,'String'));
 guidata(gcbo, handles);
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
 %%% - Œ¡À¿—“‹ ¬¬Œƒ¿ K_1 - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function edit_K_1_Callback(hObject, ~, handles)
 
 handles.dat_K_1 = str2double(get(hObject,'String'));
 guidata(gcbo, handles);
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% - Œ¡À¿—“‹ »Õ»÷»¿À»«¿÷»» Œ Õ¿ ¬¬Œƒ¿ K_1 - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function edit_K_1_CreateFcn(hObject, ~, handles)
 
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
@@ -364,15 +414,20 @@ end
 
 handles.dat_K_1 = str2double(get(hObject,'String'));
 guidata(gcbo, handles);
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%%% - Œ¡À¿—“‹ ¬¬Œƒ¿ K_2 - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% - Œ¡À¿—“‹ ¬¬Œƒ¿ K_2 - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function edit_K_2_Callback(hObject, ~, handles)
 
 handles.dat_K_2 = str2double(get(hObject,'String'));
 guidata(gcbo, handles);
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% - Œ¡À¿—“‹ »Õ»÷»¿À»«¿÷»» Œ Õ¿ ¬¬Œƒ¿ K_2 - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function edit_K_2_CreateFcn(hObject, ~, handles)
 
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
@@ -381,16 +436,20 @@ end
 
 handles.dat_K_2 = str2double(get(hObject,'String'));
 guidata(gcbo, handles);
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-%%% - Œ¡À¿—“‹ ¬¬Œƒ¿ — Œ–Œ—“» PS0 - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% - Œ¡À¿—“‹ ¬¬Œƒ¿ — Œ–Œ—“» PSI0 - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function edit_psi0_Callback(hObject, ~, handles)
 
 handles.datpsi0 = str2double(get(hObject,'String'));
 guidata(gcbo, handles);
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% - Œ¡À¿—“‹ »Õ»÷»¿À»«¿÷»» Œ Õ¿ ¬¬Œƒ¿ — Œ–Œ—“» PSI0 - %%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function edit_psi0_CreateFcn(hObject, ~, handles)
 
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
@@ -399,16 +458,20 @@ end
 
 handles.datpsi0 = str2double(get(hObject,'String'));
 guidata(gcbo, handles);
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
 %%% - Œ¡À¿—“‹ ¬¬Œƒ¿ — Œ–Œ—“» V0 - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function edit_V0_Callback(hObject, ~, handles)
 
 handles.datV0 = str2double(get(hObject,'String'));
 guidata(gcbo, handles);
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% - Œ¡À¿—“‹ »Õ»÷»¿À»«¿÷»» Œ Õ¿ ¬¬Œƒ¿ — Œ–Œ—“» V0 - %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function edit_V0_CreateFcn(hObject, ~, handles)
 
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
@@ -417,16 +480,20 @@ end
 
 handles.datV0 = str2double(get(hObject,'String'));
 guidata(gcbo, handles);
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
 %%% - Œ¡À¿—“‹ ¬¬Œƒ¿  ŒŒ–ƒ»Õ¿“€ Z0 - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function edit_z0_Callback(hObject, ~, handles)
 
 handles.datz0 = str2double(get(hObject,'String'));
 guidata(gcbo, handles);
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% - Œ¡À¿—“‹ »Õ»÷»¿À»«¿÷»»  ŒŒ–ƒ»Õ¿“€ Z0 - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function edit_z0_CreateFcn(hObject, ~, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
@@ -434,16 +501,20 @@ end
 
 handles.datz0 = str2double(get(hObject,'String'));
 guidata(gcbo, handles);
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
 %%% - Œ¡À¿—“‹ ¬¬Œƒ¿  ŒŒ–ƒ»Õ¿“€ X0 - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function edit_x0_Callback(hObject, ~, handles)
 
 handles.datx0 = str2double(get(hObject,'String'));
 guidata(gcbo, handles);
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% - Œ¡À¿—“‹ »Õ»÷»¿À»«¿÷»»  ŒŒ–ƒ»Õ¿“€ X0 - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function edit_x0_CreateFcn(hObject, ~, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
@@ -451,28 +522,18 @@ end
 
 handles.datx0 = str2double(get(hObject,'String'));
 guidata(gcbo, handles);
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-% --------------------------------------------------------------------
-function uipushtool6_ClickedCallback(~, ~, ~)
-
-saveas(gui_lab01, 'screen.png')
-
-% hObject    handle to uipushtool6 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-
-
-
 %%% - Œ¡À¿—“‹ ¬¬Œƒ¿ K_31 - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function edit_K_31_Callback(hObject, ~, handles)
 
-handles.dat_K_31 = str2double(get(hObject,'String'));
+handles.dat_K_31 = str2double(get(hObject, 'String'));
 guidata(gcbo, handles);
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function edit_K_31_CreateFcn(hObject, ~, handles)
 
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
@@ -481,10 +542,11 @@ end
 
 handles.dat_K_31 = str2double(get(hObject,'String'));
 guidata(gcbo, handles);
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
 %%% - Œ¡À¿—“‹ ¬¬Œƒ¿ K_32 - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function edit_K_32_Callback(hObject, ~, handles)
 
 handles.dat_K_32 = str2double(get(hObject,'String'));
@@ -498,16 +560,18 @@ end
 
 handles.dat_K_32 = str2double(get(hObject,'String'));
 guidata(gcbo, handles);
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
 %%% - Œ¡À¿—“‹ ¬¬Œƒ¿ K_33 - %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function edit_K_33_Callback(hObject, ~, handles)
 
 handles.dat_K_33 = str2double(get(hObject,'String'));
 guidata(gcbo, handles);
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function edit_K_33_CreateFcn(hObject, ~, handles)
 
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
@@ -516,10 +580,9 @@ end
 
 handles.dat_K_33 = str2double(get(hObject,'String'));
 guidata(gcbo, handles);
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
 % --- Executes on button press in pushbutton4.
 function pushbutton4_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton4 (see GCBO)
@@ -553,6 +616,7 @@ switch handles.dat3
 end
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function save_two_obj(~, ~, handles,ydata,xdata,datime)
        name_1 = strcat(num2str(handles.dat2),'-',num2str(handles.dat3),'_',datime,'-','”Ô‡‚ÎˇÂÏ˚È Ó·˙ÂÍÚÇ','.txt');
        Data1 = ydata(1); %—É–ø—Ä–∞–≤–ª—è–µ–º—ã–π –æ–±—ä–µ–∫—Ç
@@ -569,6 +633,8 @@ function save_two_obj(~, ~, handles,ydata,xdata,datime)
        namex = strcat(num2str(handles.dat2),'-',num2str(handles.dat3 -1),'_',datime,'-','OX','.txt');
        save_in_file(namex,x_dat);
 
+       
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function save_one_obj(~, ~, handles,ydata,xdata,datime)
     name = strcat(num2str(handles.dat2),'-',num2str(handles.dat3),'_',datime,'-','OY','.txt');
     
@@ -576,13 +642,16 @@ function save_one_obj(~, ~, handles,ydata,xdata,datime)
     
     namex = strcat(num2str(handles.dat2),'-',num2str(handles.dat3 - 1),'_',datime,'-','OX','.txt');
     save_in_file(namex,xdata);
-    
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function save_in_file(name,data)
 fileID = fopen(name,'w');
 fprintf(fileID,' %6.4f', data);
 fclose(fileID);
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % --- Executes on button press in checkbox9.
 function checkbox9_Callback(~, ~, ~)
 % hObject    handle to checkbox9 (see GCBO)
@@ -592,7 +661,9 @@ function checkbox9_Callback(~, ~, ~)
 % Hint: get(hObject,'Value') returns toggle state of checkbox9
 
 
-% --- Executes on button press in checkbox10.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% - Executes on button press in checkbox10 - %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function checkbox10_Callback(hObject, ~, handles)
 % hObject    handle to checkbox10 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -605,6 +676,8 @@ else
     set(handles.uipanel29, 'Visible', 'off')
 end
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function launchCnt_Callback(hObject, ~, handles)
 % hObject    handle to launchCnt (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -615,7 +688,10 @@ function launchCnt_Callback(hObject, ~, handles)
 handles.dat_LaunchCnt = str2double(get(hObject,'String'));
 guidata(gcbo, handles);
 
-% --- Executes during object creation, after setting all properties.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% - Executes during object creation, after setting all properties - %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function launchCnt_CreateFcn(hObject, ~, handles)
 % hObject    handle to launchCnt (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -629,6 +705,8 @@ end
 handles.dat_LaunchCnt = str2double(get(hObject,'String'));
 guidata(gcbo, handles);
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function LaunchAngles_Callback(hObject, ~, handles)
 % hObject    handle to LaunchAngles (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -639,7 +717,10 @@ function LaunchAngles_Callback(hObject, ~, handles)
 handles.dat_LaunchAngles = str2double(get(hObject,'String'));
 guidata(gcbo, handles);
 
-% --- Executes during object creation, after setting all properties.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% - Executes during object creation, after setting all properties - %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function LaunchAngles_CreateFcn(hObject, ~, handles)
 % hObject    handle to LaunchAngles (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -653,7 +734,10 @@ end
 handles.dat_LaunchAngles = str2double(get(hObject,'String'));
 guidata(gcbo, handles);
 
-% --- Executes on key press with focus on checkbox10 and none of its controls.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% - Executes on key press with focus on checkbox10 and none of its controls
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function checkbox10_KeyPressFcn(~, ~, ~)
 % hObject    handle to checkbox10 (see GCBO)
 % eventdata  structure with the following fields (see MATLAB.UI.CONTROL.UICONTROL)
