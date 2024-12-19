@@ -397,7 +397,7 @@ box on
 axis fill
 set(gca, 'FontSize', 12);
 
-switch sw_graph
+switch sw_graph % Выбор графика для отображения
     case 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    1. Траектории
         for Dir = 1:NumDirs
             z_1 = z1(Dir,:); x_1 = x1(Dir,:);
